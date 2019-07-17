@@ -1,23 +1,22 @@
 package application;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Program {
 
 	public static void main(String[] args) {
 
-		String path = "C:\\ws\\in.txt";
-		
-		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-			String line = br.readLine();
+		String[] lines = new String[] { "Good Morning", "Good Afternoon", "Good night" };
 
-			while (line != null) {
-			System.out.println(line);
-				line = br.readLine();
+		String path = "c:\\ws\\out.txt";
+
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) { // (path, true) indica para não recriar o arquivo
+			for (String line : lines) {
+				bw.write(line);
+				bw.newLine();
 			}
-
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
 		}
